@@ -13,3 +13,7 @@ func (b *Buffer) IsEmpty() bool {
 func (b *Buffer) IsDone() bool {
 	return len(b.Incoming) == 0
 }
+
+func (b *Buffer) Clear() {
+	b.Current = []rune{}
+}
