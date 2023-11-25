@@ -17,3 +17,10 @@ func (b *Buffer) IsDone() bool {
 func (b *Buffer) Clear() {
 	b.Current = []rune{}
 }
+
+func (b *Buffer) Store() {
+	if !b.IsEmpty() {
+		b.Done = append(b.Done, string(b.Current))
+		b.Clear()
+	}
+}
