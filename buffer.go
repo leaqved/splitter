@@ -24,3 +24,9 @@ func (b *Buffer) Store() {
 		b.Clear()
 	}
 }
+
+func (b *Buffer) Trim() {
+	if !b.IsDone() {
+		b.Incoming = b.Incoming[1:]
+	}
+}
