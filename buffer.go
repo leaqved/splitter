@@ -9,3 +9,7 @@ type Buffer struct {
 func (b *Buffer) IsEmpty() bool {
 	return len(b.Current) == 0
 }
+
+func (b *Buffer) IsDone() bool {
+	return len(b.Incoming) == 0
+}
