@@ -30,3 +30,10 @@ func (b *Buffer) Trim() {
 		b.Incoming = b.Incoming[1:]
 	}
 }
+
+func (b *Buffer) Load() {
+	if !b.IsDone() {
+		b.Current = append(b.Current, b.Incoming[0])
+		b.Trim()
+	}
+}
