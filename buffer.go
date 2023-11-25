@@ -5,3 +5,7 @@ type Buffer struct {
 	Current  []rune
 	Done     []string
 }
+
+func (b *Buffer) IsEmpty() bool {
+	return len(b.Current) == 0
+}
