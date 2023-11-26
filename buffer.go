@@ -1,39 +1,39 @@
 package splitter
 
 type Buffer struct {
-	Incoming []rune
-	Current  []rune
-	Done     []string
+	incoming []rune
+	current  []rune
+	done     []string
 }
 
-func (b *Buffer) IsEmpty() bool {
-	return len(b.Current) == 0
+func (b *Buffer) isEmpty() bool {
+	return len(b.current) == 0
 }
 
-func (b *Buffer) IsDone() bool {
-	return len(b.Incoming) == 0
+func (b *Buffer) isDone() bool {
+	return len(b.incoming) == 0
 }
 
-func (b *Buffer) Clear() {
-	b.Current = []rune{}
+func (b *Buffer) clear() {
+	b.current = []rune{}
 }
 
-func (b *Buffer) Store() {
-	if !b.IsEmpty() {
-		b.Done = append(b.Done, string(b.Current))
-		b.Clear()
+func (b *Buffer) store() {
+	if !b.isEmpty() {
+		b.done = append(b.done, string(b.current))
+		b.clear()
 	}
 }
 
-func (b *Buffer) Trim() {
-	if !b.IsDone() {
-		b.Incoming = b.Incoming[1:]
+func (b *Buffer) trim() {
+	if !b.isDone() {
+		b.incoming = b.incoming[1:]
 	}
 }
 
-func (b *Buffer) Load() {
-	if !b.IsDone() {
-		b.Current = append(b.Current, b.Incoming[0])
-		b.Trim()
+func (b *Buffer) load() {
+	if !b.isDone() {
+		b.current = append(b.current, b.incoming[0])
+		b.trim()
 	}
 }
