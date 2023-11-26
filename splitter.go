@@ -28,23 +28,23 @@ func (s *Splitter) Check(rules ...Rule) bool {
 
 func (s *Splitter) Process(str string) []string {
 	s.Buffer.incoming = []rune(str)
-	for !s.Buffer.IsDone() {
+	for !s.Buffer.isDone() {
 		switch {
 		case s.Check(s.Skip...):
-			s.Buffer.Trim()
+			s.Buffer.trim()
 		case s.Check(s.Split...):
-			s.Buffer.Store()
+			s.Buffer.store()
 			fallthrough
 		default:
 			if s.Check(s.Join...) {
-				s.Buffer.Load()
+				s.Buffer.load()
 			} else {
-				s.Buffer.Trim()
+				s.Buffer.trim()
 			}
 		}
 	}
-	if !s.Buffer.IsEmpty() {
-		s.Buffer.Store()
+	if !s.Buffer.isEmpty() {
+		s.Buffer.store()
 	}
 	return s.Buffer.done
 }
