@@ -17,7 +17,7 @@ func New(opts ...Option) *Splitter {
 	return s
 }
 
-func (s *Splitter) Check(rules ...Rule) bool {
+func (s *Splitter) check(rules ...Rule) bool {
 	for _, rule := range rules {
 		if rule(s.buffer) {
 			return true
@@ -30,13 +30,13 @@ func (s *Splitter) Process(str string) []string {
 	s.buffer.incoming = []rune(str)
 	for !s.buffer.isDone() {
 		switch {
-		case s.Check(s.skip...):
+		case s.check(s.skip...):
 			s.buffer.trim()
-		case s.Check(s.split...):
+		case s.check(s.split...):
 			s.buffer.store()
 			fallthrough
 		default:
-			if s.Check(s.join...) {
+			if s.check(s.join...) {
 				s.buffer.load()
 			} else {
 				s.buffer.trim()
