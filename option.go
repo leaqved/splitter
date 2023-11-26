@@ -13,3 +13,9 @@ func AddSplit(rules ...Rule) Option {
 		s.Split = append(s.Split, rules...)
 	}
 }
+
+func AddJoin(rules ...Rule) Option {
+	return func(s *Splitter) {
+		s.Join = append(s.Join, rules...)
+	}
+}
