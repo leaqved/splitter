@@ -37,3 +37,7 @@ func (b *Buffer) load() {
 		b.trim()
 	}
 }
+
+func (b *Buffer) GetAll() ([]rune, []rune, []string) {
+	return b.incoming, b.current, b.done
+}
