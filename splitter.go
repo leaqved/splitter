@@ -26,7 +26,7 @@ func (s *Splitter) check(rules ...Rule) bool {
 	return false
 }
 
-func (s *Splitter) Process(str string) []string {
+func (s *Splitter) Split(str string) []string {
 	s.buffer.incoming = []rune(str)
 	for !s.buffer.isDone() {
 		switch {
