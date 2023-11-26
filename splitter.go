@@ -1,15 +1,15 @@
 package splitter
 
 type Splitter struct {
-	Buffer *Buffer
-	Skip   []Rule
-	Split  []Rule
-	Join   []Rule
+	buffer *Buffer
+	skip   []Rule
+	split  []Rule
+	join   []Rule
 }
 
 func New(opts ...Option) *Splitter {
 	s := &Splitter{
-		Buffer: &Buffer{},
+		buffer: &Buffer{},
 	}
 	for _, opt := range opts {
 		opt(s)
@@ -19,7 +19,7 @@ func New(opts ...Option) *Splitter {
 
 func (s *Splitter) Check(rules ...Rule) bool {
 	for _, rule := range rules {
-		if rule(s.Buffer) {
+		if rule(s.buffer) {
 			return true
 		}
 	}
@@ -27,24 +27,24 @@ func (s *Splitter) Check(rules ...Rule) bool {
 }
 
 func (s *Splitter) Process(str string) []string {
-	s.Buffer.incoming = []rune(str)
-	for !s.Buffer.isDone() {
+	s.buffer.incoming = []rune(str)
+	for !s.buffer.isDone() {
 		switch {
-		case s.Check(s.Skip...):
-			s.Buffer.trim()
-		case s.Check(s.Split...):
-			s.Buffer.store()
+		case s.Check(s.skip...):
+			s.buffer.trim()
+		case s.Check(s.split...):
+			s.buffer.store()
 			fallthrough
 		default:
-			if s.Check(s.Join...) {
-				s.Buffer.load()
+			if s.Check(s.join...) {
+				s.buffer.load()
 			} else {
-				s.Buffer.trim()
+				s.buffer.trim()
 			}
 		}
 	}
-	if !s.Buffer.isEmpty() {
-		s.Buffer.store()
+	if !s.buffer.isEmpty() {
+		s.buffer.store()
 	}
-	return s.Buffer.done
+	return s.buffer.done
 }

@@ -4,18 +4,18 @@ type Option func(*Splitter)
 
 func AddSkip(rules ...Rule) Option {
 	return func(s *Splitter) {
-		s.Skip = append(s.Skip, rules...)
+		s.skip = append(s.skip, rules...)
 	}
 }
 
 func AddSplit(rules ...Rule) Option {
 	return func(s *Splitter) {
-		s.Split = append(s.Split, rules...)
+		s.split = append(s.split, rules...)
 	}
 }
 
 func AddJoin(rules ...Rule) Option {
 	return func(s *Splitter) {
-		s.Join = append(s.Join, rules...)
+		s.join = append(s.join, rules...)
 	}
 }
