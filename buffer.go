@@ -1,39 +1,39 @@
 package splitter
 
 type Buffer struct {
-	Incoming []rune
-	Current  []rune
-	Done     []string
+	incoming []rune
+	current  []rune
+	done     []string
 }
 
 func (b *Buffer) IsEmpty() bool {
-	return len(b.Current) == 0
+	return len(b.current) == 0
 }
 
 func (b *Buffer) IsDone() bool {
-	return len(b.Incoming) == 0
+	return len(b.incoming) == 0
 }
 
 func (b *Buffer) Clear() {
-	b.Current = []rune{}
+	b.current = []rune{}
 }
 
 func (b *Buffer) Store() {
 	if !b.IsEmpty() {
-		b.Done = append(b.Done, string(b.Current))
+		b.done = append(b.done, string(b.current))
 		b.Clear()
 	}
 }
 
 func (b *Buffer) Trim() {
 	if !b.IsDone() {
-		b.Incoming = b.Incoming[1:]
+		b.incoming = b.incoming[1:]
 	}
 }
 
 func (b *Buffer) Load() {
 	if !b.IsDone() {
-		b.Current = append(b.Current, b.Incoming[0])
+		b.current = append(b.current, b.incoming[0])
 		b.Trim()
 	}
 }

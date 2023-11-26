@@ -27,7 +27,7 @@ func (s *Splitter) Check(rules ...Rule) bool {
 }
 
 func (s *Splitter) Process(str string) []string {
-	s.Buffer.Incoming = []rune(str)
+	s.Buffer.incoming = []rune(str)
 	for !s.Buffer.IsDone() {
 		switch {
 		case s.Check(s.Skip...):
@@ -46,5 +46,5 @@ func (s *Splitter) Process(str string) []string {
 	if !s.Buffer.IsEmpty() {
 		s.Buffer.Store()
 	}
-	return s.Buffer.Done
+	return s.Buffer.done
 }
