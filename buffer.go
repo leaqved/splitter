@@ -49,3 +49,7 @@ func (b *Buffer) GetIncoming() []rune {
 func (b *Buffer) GetCurrent() []rune {
 	return b.current
 }
+
+func (b *Buffer) GetDone() []string {
+	return b.done
+}
