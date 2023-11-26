@@ -60,3 +60,10 @@ func (b *Buffer) GetLeft() (rune, bool) {
 	}
 	return b.current[len(b.current)-1], true
 }
+
+func (b *Buffer) GetRight() (rune, bool) {
+	if b.isDone() {
+		return 0, false
+	}
+	return b.incoming[0], true
+}
