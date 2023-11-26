@@ -41,3 +41,7 @@ func (b *Buffer) load() {
 func (b *Buffer) GetAll() ([]rune, []rune, []string) {
 	return b.incoming, b.current, b.done
 }
+
+func (b *Buffer) GetIncoming() []rune {
+	return b.incoming
+}
