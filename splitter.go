@@ -6,3 +6,9 @@ type Splitter struct {
 	Split  []Rule
 	Join   []Rule
 }
+
+func New() *Splitter {
+	return &Splitter{
+		Buffer: &Buffer{},
+	}
+}
