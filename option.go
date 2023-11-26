@@ -7,3 +7,9 @@ func AddSkip(rules ...Rule) Option {
 		s.Skip = append(s.Skip, rules...)
 	}
 }
+
+func AddSplit(rules ...Rule) Option {
+	return func(s *Splitter) {
+		s.Split = append(s.Split, rules...)
+	}
+}
