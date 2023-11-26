@@ -45,3 +45,7 @@ func (b *Buffer) GetAll() ([]rune, []rune, []string) {
 func (b *Buffer) GetIncoming() []rune {
 	return b.incoming
 }
+
+func (b *Buffer) GetCurrent() []rune {
+	return b.current
+}
