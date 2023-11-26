@@ -53,3 +53,10 @@ func (b *Buffer) GetCurrent() []rune {
 func (b *Buffer) GetDone() []string {
 	return b.done
 }
+
+func (b *Buffer) GetLeft() (rune, bool) {
+	if b.isEmpty() {
+		return 0, false
+	}
+	return b.current[len(b.current)-1], true
+}
