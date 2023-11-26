@@ -7,10 +7,14 @@ type Splitter struct {
 	Join   []Rule
 }
 
-func New() *Splitter {
-	return &Splitter{
+func New(opts ...Option) *Splitter {
+	s := &Splitter{
 		Buffer: &Buffer{},
 	}
+	for _, opt := range opts {
+		opt(s)
+	}
+	return s
 }
 
 func (s *Splitter) Check(rules ...Rule) bool {
