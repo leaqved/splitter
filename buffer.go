@@ -37,3 +37,33 @@ func (b *Buffer) load() {
 		b.trim()
 	}
 }
+
+func (b *Buffer) GetAll() ([]rune, []rune, []string) {
+	return b.incoming, b.current, b.done
+}
+
+func (b *Buffer) GetIncoming() []rune {
+	return b.incoming
+}
+
+func (b *Buffer) GetCurrent() []rune {
+	return b.current
+}
+
+func (b *Buffer) GetDone() []string {
+	return b.done
+}
+
+func (b *Buffer) GetLeft() (rune, bool) {
+	if b.isEmpty() {
+		return 0, false
+	}
+	return b.current[len(b.current)-1], true
+}
+
+func (b *Buffer) GetRight() (rune, bool) {
+	if b.isDone() {
+		return 0, false
+	}
+	return b.incoming[0], true
+}
