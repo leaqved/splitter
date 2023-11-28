@@ -35,3 +35,9 @@ func (r Rule) And(another Rule) Rule {
 		return r(b) && another(b)
 	}
 }
+
+func (r CharRule) And(another CharRule) CharRule {
+	return func(char rune) bool {
+		return r(char) && another(char)
+	}
+}
