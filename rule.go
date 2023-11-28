@@ -19,3 +19,13 @@ func Before(rule CharRule) Rule {
 		return rule(char)
 	}
 }
+
+func After(rule CharRule) Rule {
+	return func(b *Buffer) bool {
+		char, ok := b.GetLeft()
+		if !ok {
+			return false
+		}
+		return rule(char)
+	}
+}
