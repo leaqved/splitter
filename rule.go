@@ -73,3 +73,9 @@ func WordInSet[T comparable](set map[string]T) Rule {
 		return ok
 	}
 }
+
+func Everything() Rule {
+	return func(b *Buffer) bool {
+		return true
+	}
+}
