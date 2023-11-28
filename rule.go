@@ -9,3 +9,13 @@ package splitter
 type Rule func(*Buffer) bool
 
 type CharRule func(char rune) bool
+
+func Before(rule CharRule) Rule {
+	return func(b *Buffer) bool {
+		char, ok := b.GetRight()
+		if !ok {
+			return false
+		}
+		return rule(char)
+	}
+}
