@@ -79,3 +79,9 @@ func Everything() Rule {
 		return true
 	}
 }
+
+func AnyChar() CharRule {
+	return func(char rune) bool {
+		return true
+	}
+}
