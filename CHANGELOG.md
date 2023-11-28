@@ -2,10 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.2.0] - 2023-11-28
+
+- Add rules based on sets
+- Add rules with no conditions
+- Add logical disjunction for rules
+
 ## [v1.1.0] - 2023-11-28
 
 - Add character Rules
-- Add connectors for Rules
+- Add connectors for Rules  
 
 ## [v1.0.0] - 2023-11-27
 
