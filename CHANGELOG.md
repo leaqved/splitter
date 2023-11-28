@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.0] - 2023-11-28
+
+- Add character Rules
+- Add connectors for Rules
+
 ## [v1.0.0] - 2023-11-27
 
 First stable version
