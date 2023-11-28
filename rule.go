@@ -58,3 +58,10 @@ func (r CharRule) Or(another CharRule) CharRule {
 		return r(char) || another(char)
 	}
 }
+
+func CharInSet[T comparable](set map[rune]T) CharRule {
+	return func(char rune) bool {
+		_, ok := set[char]
+		return ok
+	}
+}
