@@ -29,3 +29,9 @@ func After(rule CharRule) Rule {
 		return rule(char)
 	}
 }
+
+func (r Rule) And(another Rule) Rule {
+	return func(b *Buffer) bool {
+		return r(b) && another(b)
+	}
+}
