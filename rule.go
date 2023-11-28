@@ -7,3 +7,5 @@ package splitter
 //
 // Should return true if current [Buffer] state satisfies the rule and false otherwise.
 type Rule func(*Buffer) bool
+
+type CharRule func(char rune) bool
