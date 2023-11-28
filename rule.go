@@ -46,3 +46,9 @@ func (r CharRule) And(another CharRule) CharRule {
 		return r(char) && another(char)
 	}
 }
+
+func (r Rule) Or(another Rule) Rule {
+	return func(b *Buffer) bool {
+		return r(b) || another(b)
+	}
+}
