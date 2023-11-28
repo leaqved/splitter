@@ -44,6 +44,7 @@ func (s *Splitter) Split(str string) []string {
 		switch {
 		case s.check(s.skip...):
 			s.buffer.trim()
+			s.buffer.store()
 		case s.check(s.split...):
 			s.buffer.store()
 			fallthrough
