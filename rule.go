@@ -65,3 +65,11 @@ func CharInSet[T comparable](set map[rune]T) CharRule {
 		return ok
 	}
 }
+
+func WordInSet[T comparable](set map[string]T) Rule {
+	return func(b *Buffer) bool {
+		current := b.GetCurrent()
+		_, ok := set[string(current)]
+		return ok
+	}
+}
