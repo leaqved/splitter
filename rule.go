@@ -47,18 +47,21 @@ func (r CharRule) And(another CharRule) CharRule {
 	}
 }
 
+// And returns a logical disjunction of two Rules.
 func (r Rule) Or(another Rule) Rule {
 	return func(b *Buffer) bool {
 		return r(b) || another(b)
 	}
 }
 
+// And returns a logical disjunction of two CharRules.
 func (r CharRule) Or(another CharRule) CharRule {
 	return func(char rune) bool {
 		return r(char) || another(char)
 	}
 }
 
+// CharInSet returns a CharRule that checks if character is represented in the set.
 func CharInSet[T comparable](set map[rune]T) CharRule {
 	return func(char rune) bool {
 		_, ok := set[char]
@@ -66,6 +69,7 @@ func CharInSet[T comparable](set map[rune]T) CharRule {
 	}
 }
 
+// CharInSet returns a Rule that checks if current word in [Buffer] is represented in the set.
 func WordInSet[T comparable](set map[string]T) Rule {
 	return func(b *Buffer) bool {
 		current := b.GetCurrent()
@@ -74,12 +78,14 @@ func WordInSet[T comparable](set map[string]T) Rule {
 	}
 }
 
+// Everything returns a Rule that returns true in any case.
 func Everything() Rule {
 	return func(b *Buffer) bool {
 		return true
 	}
 }
 
+// AnyChar returns a CharRule that returns true in any case.
 func AnyChar() CharRule {
 	return func(char rune) bool {
 		return true
